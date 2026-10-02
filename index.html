@@ -174,7 +174,8 @@ section{scroll-margin-top:80px}
 /* Behance-style pages: one continuous column, no gaps between images */
 .case-pages{max-width:1400px;margin-inline:auto;display:flex;flex-direction:column;gap:0;line-height:0;font-size:0;background:var(--ink-2)}
 .case-pages img{display:block;width:100%;height:auto;margin:0;border:0}
-.case-pages img+img{margin-top:-1px}  /* overlap 1px so sub-pixel rounding never shows a hairline seam */
+.case-pages video{display:block;width:100%;height:auto;margin:0;border:0;background:#000}
+.case-pages>*+*{margin-top:-1px}  /* overlap 1px so sub-pixel rounding never shows a hairline seam */
 .case-nav{display:flex;justify-content:space-between;gap:16px;margin-top:clamp(40px,6vw,80px);border-top:1px solid var(--line);padding-top:24px}
 .case-nav button{all:unset;cursor:pointer;display:flex;flex-direction:column;gap:6px;max-width:48%}
 .case-nav button:last-child{text-align:right;align-items:flex-end}
@@ -512,7 +513,7 @@ footer{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;border
 
 
   // project viewer
-  const PAGES={"brite":[["brite-1.jpg",1600,1140],["brite-2.jpg",1600,1131],["brite-3.jpg",1600,1131],["brite-4.jpg",1600,1131],["brite-5.jpg",1600,2410],["brite-6.jpg",1600,1131],["brite-7.jpg",1600,1131],["brite-8.jpg",1600,1131],["brite-9.jpg",1600,1131],["brite-10.jpg",1600,1131],["brite-11.jpg",1600,1131],["brite-12.jpg",1600,1131]],"metriq":[["metriq-1.jpg",1600,1140],["metriq-2.jpg",1600,1131],["metriq-3.jpg",1600,1131],["metriq-4.jpg",1600,1131],["metriq-5.jpg",1600,1131],["metriq-6.jpg",1600,1131],["metriq-7.jpg",1600,1131],["metriq-8.jpg",1600,1131],["metriq-9.jpg",1600,1131],["metriq-10.jpg",1600,1190],["metriq-11.jpg",1600,1093],["metriq-12.jpg",1600,1165],["metriq-13.jpg",1600,1801]],"mori":[["mori-1.jpg",1600,1140],["mori-2.jpg",1600,1131],["mori-3.jpg",1600,2062],["mori-4.jpg",1600,1522],["mori-5.jpg",1600,1478],["mori-6.jpg",1600,2592],["mori-7.jpg",1600,6991],["mori-8.jpg",1600,2366],["mori-9.jpg",1600,4618],["mori-10.jpg",1600,1446],["mori-11.jpg",1600,876],["mori-12.jpg",1600,448],["mori-13.gif",1600,560],["mori-14.jpg",1600,564],["mori-15.gif",1600,482],["mori-16.jpg",1600,264]],"surgi":[["surgi-1.jpg",1600,1140],["surgi-2.jpg",1600,1131],["surgi-3.jpg",1600,2339],["surgi-4.jpg",1600,1131],["surgi-5.jpg",1600,1131],["surgi-6.jpg",1600,1131],["surgi-7.jpg",1600,1131],["surgi-8.jpg",1600,1131],["surgi-9.jpg",1600,2104],["surgi-10.jpg",1600,1131],["surgi-11.jpg",1600,1131],["surgi-12.jpg",1600,3533],["surgi-13.jpg",1600,1131],["surgi-14.jpg",1600,1131],["surgi-15.jpg",1600,1131],["surgi-16.jpg",1600,1131],["surgi-17.jpg",1600,1131],["surgi-18.jpg",1600,1131],["surgi-19.jpg",1600,2170]]};
+  const PAGES={"brite":[["brite-1.jpg",1600,1140],["brite-2.jpg",1600,1131],["brite-3.jpg",1600,1131],["brite-4.jpg",1600,1131],["brite-5.jpg",1600,2410],["brite-6.jpg",1600,1131],["brite-7.jpg",1600,1131],["brite-8.jpg",1600,1131],["brite-9.jpg",1600,1131],["brite-10.jpg",1600,1131],["brite-11.jpg",1600,1131],["brite-12.jpg",1600,1131]],"metriq":[["metriq-1.jpg",1600,1140],["metriq-2.jpg",1600,1131],["metriq-3.jpg",1600,1131],["metriq-4.jpg",1600,1131],["metriq-5.jpg",1600,1131],["metriq-6.jpg",1600,1131],["metriq-7.jpg",1600,1131],["metriq-8.jpg",1600,1131],["metriq-9.jpg",1600,1131],["metriq-10.jpg",1600,1190],["metriq-11.jpg",1600,1093],["metriq-12.jpg",1600,1165],["metriq-13.jpg",1600,1801]],"mori":[["mori-1.jpg",1600,1140],["mori-2.jpg",1600,1131],["mori-3.jpg",1600,2062],["mori-4.jpg",1600,1522],["mori-5.jpg",1600,1478],["mori-6.jpg",1600,2592],["mori-7.jpg",1600,6991],["mori-8.jpg",1600,2366],["mori-9.jpg",1600,4618],["mori-10.jpg",1600,1446],["mori-11.jpg",1600,876],["mori-12.jpg",1600,448],["mori-13.gif",1600,560],["mori-14.jpg",1600,564],["mori-15.gif",1600,482],["mori-16.jpg",1600,264]],"surgi":[["surgi-1.jpg",1600,1140],["surgi-2.jpg",1600,1131],["surgi-3.jpg",1600,2339],["surgi-4.jpg",1600,1131],["surgi-5.jpg",1600,1131],["surgi-6.jpg",1600,1131],["surgi-7.jpg",1600,1131],["surgi-8.jpg",1600,1131],["surgi-9.jpg",1600,2104],["surgi-10.jpg",1600,1131],["surgi-11.jpg",1600,1131],["surgi-12.jpg",1600,3533],["surgi-13.jpg",1600,1131],["surgi-14.jpg",1600,1131],["surgi-15.jpg",1600,1131],["surgi-16.jpg",1600,1131],["surgi-17.jpg",1600,1131],["surgi-18.jpg",1600,1131],["surgi-19.jpg",1600,2170],["surgi-video.mp4",1280,720]]};
   const projs=[...document.querySelectorAll('.proj')], cs=document.getElementById('case');
   const q=id=>document.getElementById(id);
   let cur=-1, lastFocus=null;
@@ -525,9 +526,18 @@ footer{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;border
     q('caseTags').innerHTML=a.querySelector('.tags').innerHTML;
     const box=q('casePages'), title=a.querySelector('h3').textContent; box.innerHTML='';
     (PAGES[a.dataset.key]||[]).forEach(([f,w,h],k)=>{
+      const url='img/'+f;
+      if(/\.mp4$/.test(f)){
+        const v=document.createElement('video'); v.width=w; v.height=h;
+        v.src=url; v.poster=url.replace(/\.mp4$/,'.jpg'); v.controls=true; v.muted=true; v.loop=true; v.playsInline=true; v.preload='metadata';
+        v.setAttribute('aria-label',title+' video'); box.appendChild(v);
+        // start playing (muted) when scrolled into view, pause when it leaves
+        new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting) v.play().catch(()=>{}); else v.pause(); }),{root:q('caseScroll'),threshold:.4}).observe(v);
+        return;
+      }
       const im=new Image(); im.width=w; im.height=h; im.decoding='async';
       if(k>1) im.loading='lazy';
-      im.src='img/'+f; im.alt=title+' page '+(k+1); box.appendChild(im);
+      im.src=url; im.alt=title+' page '+(k+1); box.appendChild(im);
     });
     const pv=(i-1+n)%n, nx=(i+1)%n;
     q('casePrev').querySelector('b').textContent=projs[pv].querySelector('h3').textContent; q('casePrev').dataset.i=pv;
@@ -587,7 +597,7 @@ footer{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;border
   }
   function closeCase(){
     if(cs.hidden) return;
-    cs.classList.add('closing');
+    cs.classList.add('closing'); q('casePages').querySelectorAll('video').forEach(v=>v.pause());
     setTimeout(()=>{cs.classList.remove('covered','closing'); cs.hidden=true; document.documentElement.style.overflow=''; lastFocus&&lastFocus.focus({preventScroll:true});},reduce?0:450);
   }
   function swap(i){
