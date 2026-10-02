@@ -527,7 +527,7 @@ footer{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;border
     (PAGES[a.dataset.key]||[]).forEach(([f,w,h],k)=>{
       const im=new Image(); im.width=w; im.height=h; im.decoding='async';
       if(k>1) im.loading='lazy';
-      im.src=''+f; im.alt=title+' page '+(k+1); box.appendChild(im);
+      im.src='img/'+f; im.alt=title+' page '+(k+1); box.appendChild(im);
     });
     const pv=(i-1+n)%n, nx=(i+1)%n;
     q('casePrev').querySelector('b').textContent=projs[pv].querySelector('h3').textContent; q('casePrev').dataset.i=pv;
